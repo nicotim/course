@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-color: #88c1ff;
+  --white-color: #ebdcdc;
+  --secondary-color: #ff6f20;
+  --dark-color: #141415;
+  --navbar-color: #20252c;
+  --logo-font: Roboto;
+  --title-font: "Montserrat", sans-serif;
+  --text-font: "Open Sans";
+  --regular-text-size: 1.25rem;
+  --logo-text-size: 1.75rem;
+  --title-text-size: 4.25rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--dark-color);
+}
+
+h1 {
+  font-family: var(--title-font);
+  font-size: var(--title-text-size);
+  color: var(--white-color);
+}
+
+p {
+  font-family: var(--text-font);
+  font-size: var(--regular-text-size);
+  color: var(--white-color);
+}

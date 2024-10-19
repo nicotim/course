@@ -1,0 +1,127 @@
+mat-toolbar {
+  background-color: var(--navbar-color);
+  height: 8%;
+}
+
+.logo {
+  font-family: var(--logo-font);
+  color: var(--white-color);
+  font-size: var(--logo-text-size);
+  font-weight: bold;
+  cursor: default;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-style: var(--text-font);
+  font-size: var(--regular-text-size);
+  margin-right: 1.5rem;
+  margin-left: 1rem;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: var(--main-color);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.main-content {
+  display: flex;
+  flex-flow: row;
+}
+
+.banner {
+  position: absolute;
+  width: 40rem;
+  height: 30.5rem;
+  left: 43.375rem;
+  top: 8rem;
+  filter: drop-shadow(4px 0px 40px rgba(0, 0, 0, 0.25));
+}
+
+.banner-image-1 {
+  width: 17.75rem;
+  height: 12.5rem;
+  position: absolute;
+  left: 5.2%;
+  right: 53.19%;
+  top: 4.65%;
+  bottom: 56.59%;
+  border-radius: 40px;
+}
+
+.banner-image-2 {
+  width: 17.75rem;
+  height: 14.375rem;
+  position: absolute;
+  left: 54%;
+  top: 0%;
+  bottom: 49.61%;
+  border-radius: 40px;
+}
+
+.banner-image-3 {
+  width: 17.75rem;
+  height: 12.125rem;
+  position: absolute;
+  top: 53.49%;
+  bottom: 0%;
+  border-radius: 40px;
+}
+
+.banner-image-4 {
+  width: 19.125rem;
+  height: 10.625rem;
+  position: absolute;
+  left: 49.45%;
+  top: 55%;
+  bottom: 0%;
+  border-radius: 40px;
+}
+
+.main-info {
+  position: absolute;
+  width: 34rem;
+  height: 25.25rem;
+  left: 2.5rem;
+  top: 8rem;
+}
+
+.main-info h1 {
+  color: var(--main-color);
+  font-family: var(--title-font);
+  font-weight: bold;
+  font-size: var(--title-text-size);
+  line-height: 5.25rem;
+}
+
+.main-info h3 {
+  font-family: var(--text-font);
+  font-weight: medium;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  color: var(--white-color);
+}
+
+.main-info button {
+  margin: 1rem 25% 0;
+  width: 12rem;
+  height: 3.125rem;
+  background: var(--secondary-color);
+  cursor: pointer;
+  border: none;
+  border-radius: 1.25rem;
+  transition: 0.3s;
+}
+
+.main-info button:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  box-shadow: 0 4px 4px rgba(255, 111, 32, 0.2);
+}
