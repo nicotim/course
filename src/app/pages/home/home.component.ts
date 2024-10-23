@@ -13,9 +13,4 @@ const MODULES = [MatToolbarModule, MatIconModule, MatListModule, RouterModule];
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
-  list = [
-    { name: 'Sign up', isActive: false },
-    { name: 'Sign in', isActive: false },
-  ];
-}
+export class HomeComponent {}

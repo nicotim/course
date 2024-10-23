@@ -1,1 +1,55 @@
-<p>register works!</p>
+<section class="content">
+  <div class="container">
+    <h1 class="logo">CourseIT</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="google">
+        <app-auth-button (onClick)="signInWithGoogle()"></app-auth-button>
+      </div>
+      <div class="card">
+        <mat-form-field>
+          <input
+            formControlName="name"
+            matInput
+            type="text"
+            placeholder="name"
+          />
+        </mat-form-field>
+        @if (isRequired('name')) {
+        <small class="warning-text">This field is required</small>
+        }
+        <mat-form-field>
+          <input
+            formControlName="email"
+            matInput
+            type="email"
+            placeholder="mail@email.com"
+          />
+        </mat-form-field>
+        @if (isRequired('email')) {
+        <small class="warning-text">This field is required</small>
+        } @else if (hasEmailError()) {
+        <small class="warning-text">Please enter a valid email address</small>
+        }
+        <mat-form-field>
+          <input
+            formControlName="password"
+            matInput
+            type="password"
+            placeholder="********"
+          />
+        </mat-form-field>
+        @if (isRequired("password")) {
+        <small class="warning-text">This field is required</small>
+        }
+        <button mat-flat-button>Sign Up</button>
+      </div>
+      <div class="footer">
+        <a class="link" routerLink="/auth/recover">Forgot your password?</a>
+
+        <a class="link" routerLink="/auth/Login">Sign In</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!--Falta agregar una seccion para elegir rol entre alumno y profesor y la seccion del nombre y apellido -->

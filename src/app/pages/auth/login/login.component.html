@@ -1,1 +1,43 @@
-<p>login works!</p>
+<section class="content">
+  <div class="container">
+    <h1 class="logo">CourseIT</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="card">
+        <mat-form-field>
+          <input
+            formControlName="email"
+            matInput
+            type="email"
+            placeholder="mail@email.com"
+          />
+        </mat-form-field>
+        @if (isRequired('email')) {
+        <small class="warning-text">This field is required</small>
+        } @else if (hasEmailError()) {
+        <small class="warning-text">Please enter a valid email address</small>
+        }
+        <mat-form-field>
+          <input
+            formControlName="password"
+            matInput
+            type="password"
+            placeholder="********"
+          />
+        </mat-form-field>
+        @if (isRequired("password")) {
+        <small class="warning-text">This field is required</small>
+        }
+        <button mat-flat-button>Sign In</button>
+      </div>
+      <p class="forgot-password">
+        Forgot your password?
+        <a class="link" routerLink="/auth/recover">Recover</a>
+      </p>
+
+      <p class="sign-in">
+        Don't have an account?
+        <a class="link" routerLink="/auth/register">Sign Up</a>
+      </p>
+    </form>
+  </div>
+</section>

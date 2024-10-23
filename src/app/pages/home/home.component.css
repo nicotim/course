@@ -27,7 +27,6 @@ mat-toolbar {
 
 .link:hover {
   color: var(--main-color);
-  transform: scale(1.1);
   transition: 0.3s;
 }
 
@@ -41,7 +40,7 @@ mat-toolbar {
   width: 40rem;
   height: 30.5rem;
   left: 43.375rem;
-  top: 8rem;
+  top: 7rem;
   filter: drop-shadow(4px 0px 40px rgba(0, 0, 0, 0.25));
 }
 
