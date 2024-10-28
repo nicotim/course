@@ -49,7 +49,7 @@ import { Component, output } from '@angular/core';
     justify-content: center;
     align-items: center;
     gap: 0.4rem;
-    height: 2rem;
+    height: 1.6rem;
     border: none;
     background-color: transparent;
     cursor: pointer;

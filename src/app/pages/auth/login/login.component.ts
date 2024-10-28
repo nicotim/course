@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { AuthButtonComponent } from '@shared/reusableComponents/auth-button/auth-button.component';
 import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
 import { toast } from 'ngx-sonner';
 import { FormSignIn } from 'src/app/core/models/interface/auth.interface';
@@ -17,6 +18,7 @@ const MODULES = [
   MatButtonModule,
   CommonModule,
   ReactiveFormsModule,
+  AuthButtonComponent,
 ];
 
 @Component({
@@ -68,6 +70,16 @@ export class LoginComponent {
       this._router.navigateByUrl('/dashboard/student');
     } catch (error: unknown) {
       toast.error('There was an error signing in');
+    }
+  }
+
+  async signUpWithGoogle() {
+    try {
+      await this._authService.signInWithGoogle();
+      toast.success('Successfully signed up');
+      this._router.navigateByUrl('/dashboard/student');
+    } catch (error) {
+      toast.error('There was an error signing up');
     }
   }
 }

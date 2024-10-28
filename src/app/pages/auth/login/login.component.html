@@ -2,6 +2,9 @@
   <div class="container">
     <h1 class="logo">CourseIT</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="google">
+        <app-auth-button (onClick)="signUpWithGoogle()"></app-auth-button>
+      </div>
       <div class="card">
         <mat-form-field>
           <input
@@ -29,15 +32,10 @@
         }
         <button mat-flat-button>Sign In</button>
       </div>
-      <p class="forgot-password">
-        Forgot your password?
-        <a class="link" routerLink="/auth/recover">Recover</a>
-      </p>
-
-      <p class="sign-in">
-        Don't have an account?
-        <a class="link" routerLink="/auth/register">Sign Up</a>
-      </p>
+      <div class="footer">
+        <a class="link" routerLink="/auth/register">Don't have an account?</a>
+        <a class="link" routerLink="/auth/recover">Forgot your password?</a>
+      </div>
     </form>
   </div>
 </section>

@@ -13,7 +13,7 @@ section {
   font-weight: bold;
   cursor: default;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .container {
@@ -21,24 +21,32 @@ section {
   width: 30rem;
   height: 34rem;
   background-color: var(--dark-color);
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card {
   display: flex;
   flex-flow: column;
   padding: 0rem 2.3rem;
+  flex-grow: 1;
 }
 
 .link {
   color: var(--secondary-color);
   text-decoration: none;
   font-style: var(--text-font);
-  font-size: 1rem;
-  transition: 0.3s;
+  font-size: 0.8rem;
+  transition: 0.2s;
 }
 
 .link:hover {
-  transition: 0.3s;
+  transition: 0.2s;
   color: var(--white-color);
 }
 
@@ -46,24 +54,27 @@ section {
   width: 40%;
   margin: 0.4rem auto;
   background-color: var(--secondary-color);
+  color: var(--dark-color);
   border: none;
   border-radius: 1.25rem;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .card button:hover {
   transform: scale(1.1);
-  transition: 0.3s;
+  transition: 0.5s;
   box-shadow: 0 4px 4px rgba(255, 111, 32, 0.2);
 }
 
-.forgot-password,
-.sign-in {
+.footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 1.8rem;
-  font-family: var(--text-font);
+  margin-top: auto;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.footer a {
+  padding: 0 1rem;
 }
 
 .warning-text {
