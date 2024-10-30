@@ -10,5 +10,5 @@ import { NgxSonnerToaster } from 'ngx-sonner';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'course';
+  title = 'CourseIT';
 }

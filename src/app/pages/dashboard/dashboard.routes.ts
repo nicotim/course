@@ -22,6 +22,11 @@ export const dashboard_routes: Routes = [
         (c) => c.DashboardStudentComponent
       ),
   },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
 ];
 
 // Ver como hacer para que una vez que tenga los roles definidos, hacer que solo se pueda ir al rol que te corresponde

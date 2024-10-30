@@ -33,7 +33,7 @@ export class RegisterComponent {
   private readonly _authService = inject(AuthService);
   private readonly _router = inject(Router);
 
-  isRequired(field: 'email' | 'password' | 'name') {
+  isRequired(field: 'email' | 'password' | 'displayName') {
     return isRequired(field, this.form);
   }
 
@@ -42,7 +42,7 @@ export class RegisterComponent {
   }
 
   form = this._formBuilder.group<FormSignUp>({
-    name: this._formBuilder.control('', Validators.required),
+    displayName: this._formBuilder.control('', Validators.required),
     email: this._formBuilder.control('', [
       Validators.required,
       Validators.email,
@@ -57,19 +57,13 @@ export class RegisterComponent {
     if (this.form.invalid) return;
 
     try {
-      const { email, password, name } = this.form.value;
-      if (!email || !password || !name) return;
+      const { email, password, displayName } = this.form.value;
+      if (!email || !password || !displayName) return;
 
-      await this._authService.signUp({
-        name,
-        email,
-        password,
-        role: 'user',
-        creationDate: new Date(),
-      });
+      await this._authService.signUp(email, password);
 
       toast.success('Successfully signed up');
-      this._router.navigateByUrl('/dashboard/student');
+      this._router.navigateByUrl('/home');
     } catch (error: unknown) {
       toast.error('There was an error signing up');
     }
@@ -79,7 +73,7 @@ export class RegisterComponent {
     try {
       await this._authService.signInWithGoogle();
       toast.success('Successfully signed up');
-      this._router.navigateByUrl('/dashboard/student');
+      this._router.navigateByUrl('/home');
     } catch (error) {
       toast.error('There was an error signing up');
     }

@@ -57,12 +57,12 @@ section {
   color: var(--dark-color);
   border: none;
   border-radius: 1.25rem;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
-.card button:hover {
-  transform: scale(1.1);
-  transition: 0.5s;
+.card button:active {
+  transform: scale(0.9);
+  transition: 0.3s;
   box-shadow: 0 4px 4px rgba(255, 111, 32, 0.2);
 }
 
@@ -83,4 +83,8 @@ section {
 
 .form-field {
   padding: 0.4rem;
+}
+
+.google {
+  padding-bottom: 2rem;
 }

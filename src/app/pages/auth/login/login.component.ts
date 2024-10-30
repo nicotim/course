@@ -52,24 +52,18 @@ export class LoginComponent {
     ]),
   });
 
-  async submit(): Promise<void> {
+  async submit() {
     if (this.form.invalid) return;
-
     try {
       const { email, password } = this.form.value;
       if (!email || !password) return;
-
-      await this._authService.signIn({
-        email,
-        password,
-        role: 'user',
-        creationDate: new Date(),
-      });
-
+      console.log(this.form.value);
+      await this._authService.signIn(email, password);
       toast.success('Successfully signed in');
-      this._router.navigateByUrl('/dashboard/student');
-    } catch (error: unknown) {
-      toast.error('There was an error signing in');
+      this._router.navigate(['/home']);
+    } catch (error) {
+      toast.error('There was an error signing in, please try again');
+      this.form.reset();
     }
   }
 
@@ -77,7 +71,7 @@ export class LoginComponent {
     try {
       await this._authService.signInWithGoogle();
       toast.success('Successfully signed up');
-      this._router.navigateByUrl('/dashboard/student');
+      this._router.navigate(['/home']);
     } catch (error) {
       toast.error('There was an error signing up');
     }

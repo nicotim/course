@@ -1,19 +1,38 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="logo">CourseIT</span>
-    <span class="example-spacer"></span>
-    <a class="link" routerLink="/auth/register">Sign up</a>
-    <a class="link" routerLink="/auth/login">Sign in</a>
+    <span class="spacer"></span>
+    <a class="link" routerLink="/auth/register" *ngIf="showRegisterLink"
+      >Sign up</a
+    >
+    <a class="link" routerLink="/auth/login" *ngIf="showLoginLink">Sign in</a>
+    <a class="link" routerLink="/dashboard/student" *ngIf="showDashboardLink"
+      >Dashboard</a
+    >
+    <span
+      class="material-symbols-outlined logout"
+      (click)="logOut()"
+      *ngIf="showLogoutButton"
+    >
+      logout
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="main-content">
   <section class="main-info">
     <h1>Quality Education</h1>
+    @if (showCustomTitle) {
+    <h3>
+      Thank you for joining us in this amazing community
+      {{ user?.email | titlecase }}
+    </h3>
+    }@else{
     <h3>
       Join our community to connect with instructors, enroll in diverse courses,
       and unlock your potential through personalized learning experiences.
     </h3>
-    <button>More info</button>
+    }
+    <button (click)="navigateToFAQ()">More info</button>
   </section>
   <section class="banner">
     <img

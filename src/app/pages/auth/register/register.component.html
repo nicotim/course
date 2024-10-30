@@ -9,13 +9,13 @@
         <div class="card">
           <mat-form-field>
             <input
-              formControlName="name"
+              formControlName="displayName"
               matInput
               type="text"
               placeholder="name"
             />
           </mat-form-field>
-          @if (isRequired('name')) {
+          @if (isRequired('displayName')) {
           <small class="warning-text">This field is required</small>
           }
           <mat-form-field>
@@ -53,5 +53,3 @@
     </form>
   </div>
 </section>
-
-<!--Falta agregar una seccion para elegir rol entre alumno y profesor y la seccion del nombre y apellido -->

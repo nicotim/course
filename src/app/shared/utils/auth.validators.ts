@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
 export const isRequired = (
-  field: 'email' | 'password' | 'name',
+  field: 'email' | 'password' | 'displayName',
   form: FormGroup
 ) => {
   const control = form.get(field);
