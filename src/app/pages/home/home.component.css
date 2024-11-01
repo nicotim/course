@@ -112,8 +112,8 @@ mat-toolbar {
 .main-info h3 {
   font-family: var(--text-font);
   font-weight: medium;
-  font-size: 1.5rem;
-  line-height: 1.75rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
   color: var(--white-color);
 }
 

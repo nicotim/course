@@ -60,7 +60,7 @@ export class RegisterComponent {
       const { email, password, displayName } = this.form.value;
       if (!email || !password || !displayName) return;
 
-      await this._authService.signUp(email, password);
+      await this._authService.signUp(email, password, displayName);
 
       toast.success('Successfully signed up');
       this._router.navigateByUrl('/home');
@@ -71,7 +71,7 @@ export class RegisterComponent {
 
   async signInWithGoogle() {
     try {
-      await this._authService.signInWithGoogle();
+      await this._authService.createAccountWithGoogle();
       toast.success('Successfully signed up');
       this._router.navigateByUrl('/home');
     } catch (error) {

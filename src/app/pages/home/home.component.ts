@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -26,8 +26,8 @@ const MODULES = [
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  private readonly _authService = inject(AuthService);
   private readonly _authState = inject(AuthStateService);
+  private readonly _authService = inject(AuthService);
   private readonly _router = inject(Router);
   private readonly _userService = inject(UserService);
 

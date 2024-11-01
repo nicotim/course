@@ -5,9 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { UserRoles } from '@core/models/interface/user.interface';
+import { AuthStateService } from '@core/service/auth-state.service';
 import { AuthButtonComponent } from '@shared/reusableComponents/auth-button/auth-button.component';
 import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
 import { toast } from 'ngx-sonner';
+import { filter, take } from 'rxjs';
 import { FormSignIn } from 'src/app/core/models/interface/auth.interface';
 import { AuthService } from 'src/app/core/service/auth.service';
 
@@ -31,6 +34,7 @@ const MODULES = [
 export class LoginComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _authService = inject(AuthService);
+  private readonly _authState = inject(AuthStateService);
   private readonly _router = inject(Router);
 
   isRequired(field: 'email' | 'password') {
@@ -57,19 +61,19 @@ export class LoginComponent {
     try {
       const { email, password } = this.form.value;
       if (!email || !password) return;
-      console.log(this.form.value);
+
       await this._authService.signIn(email, password);
+
       toast.success('Successfully signed in');
-      this._router.navigate(['/home']);
+      this._router.navigateByUrl('/home');
     } catch (error) {
       toast.error('There was an error signing in, please try again');
       this.form.reset();
     }
   }
-
   async signUpWithGoogle() {
     try {
-      await this._authService.signInWithGoogle();
+      await this._authService.createAccountWithGoogle();
       toast.success('Successfully signed up');
       this._router.navigate(['/home']);
     } catch (error) {
