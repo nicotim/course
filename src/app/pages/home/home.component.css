@@ -106,7 +106,7 @@ mat-toolbar {
   font-family: var(--title-font);
   font-weight: bold;
   font-size: var(--title-text-size);
-  line-height: 5.25rem;
+  line-height: 5rem;
 }
 
 .main-info h3 {

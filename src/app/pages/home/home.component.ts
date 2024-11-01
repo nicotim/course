@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/service/auth.service';
 import { AuthStateService } from 'src/app/core/service/auth-state.service';
 import { UserService } from '@core/service/user.service';
 import { User } from '@core/models/interface/user.interface';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Subscription, UnsubscriptionError } from 'rxjs';
 
 const MODULES = [
   MatToolbarModule,
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   private readonly _authService = inject(AuthService);
   private readonly _router = inject(Router);
   private readonly _userService = inject(UserService);
+  private subscriptions: Subscription[] = [];
 
   user: User | null = null;
 
@@ -40,19 +41,28 @@ export class HomeComponent implements OnInit {
   showCustomTitle = false;
 
   ngOnInit(): void {
-    this._authState.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
-      this.showRegisterLink = !isLoggedIn;
-      this.showLoginLink = !isLoggedIn;
-      this.showDashboardLink = isLoggedIn;
-      this.showLogoutButton = isLoggedIn;
-      this.showCustomTitle = isLoggedIn;
-    });
-    this._userService.getCurrentUserData().subscribe((userData) => {
-      this.user = userData;
-    });
+    this.subscriptions.push(
+      this._authState.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
+        this.showRegisterLink = !isLoggedIn;
+        this.showLoginLink = !isLoggedIn;
+        this.showDashboardLink = isLoggedIn;
+        this.showLogoutButton = isLoggedIn;
+        this.showCustomTitle = isLoggedIn;
+      })
+    );
+    this.subscriptions.push(
+      this._userService.getCurrentUserData$.subscribe((userData) => {
+        this.user = userData;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   async logOut() {
+    this._userService.clearCache();
     return await this._authService.logOut();
   }
 

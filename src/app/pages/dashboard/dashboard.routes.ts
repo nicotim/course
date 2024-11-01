@@ -1,32 +1,34 @@
 import { Routes } from '@angular/router';
+import {
+  roleGuardAdmin,
+  roleGuardStudent,
+  roleGuardTeacher,
+} from '@core/guards/role.guard';
 
 export const dashboard_routes: Routes = [
   {
     path: 'admin',
-    loadComponent: () =>
-      import('./dashboard-admin/dashboard-admin.component').then(
-        (c) => c.DashboardAdminComponent
-      ),
+    canActivate: [roleGuardAdmin()],
+    canActivateChild: [roleGuardAdmin()],
+    loadChildren: () =>
+      import('./dashboard-admin/admin.routes').then((c) => c.admin_routes),
   },
   {
     path: 'teacher',
-    loadComponent: () =>
-      import('./dashboard-teacher/dashboard-teacher.component').then(
-        (c) => c.DashboardTeacherComponent
+    canActivate: [roleGuardTeacher()],
+    canActivateChild: [roleGuardTeacher()],
+    loadChildren: () =>
+      import('./dashboard-teacher/teacher.routes').then(
+        (c) => c.teacher_routes
       ),
   },
   {
     path: 'student',
-    loadComponent: () =>
-      import('./dashboard-student/dashboard-student.component').then(
-        (c) => c.DashboardStudentComponent
+    canActivate: [roleGuardStudent()],
+    canActivateChild: [roleGuardStudent()],
+    loadChildren: () =>
+      import('./dashboard-student/student.routes').then(
+        (c) => c.student_routes
       ),
   },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
 ];
-
-// Ver como hacer para que una vez que tenga los roles definidos, hacer que solo se pueda ir al rol que te corresponde

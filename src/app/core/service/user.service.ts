@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { User, UserRole } from '../models/interface/user.interface';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs/internal/Observable';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { of } from 'rxjs/internal/observable/of';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
@@ -13,16 +13,42 @@ export class UserService {
   private readonly _angularFirestore = inject(AngularFirestore);
   private readonly _firestore = inject(Firestore);
 
+  // Cache
+  private cachedUser: User | null = null;
+  private cachedUserRole: UserRole | null = null;
+
   // Devuelve los datos de un usuario, basado en su uid
   getUser(uid: string): Observable<User | null> {
-    return this._angularFirestore
-      .doc<User>(`users/${uid}`)
-      .valueChanges()
-      .pipe(map((user) => user ?? null));
+    if (this.cachedUser) {
+      return of(this.cachedUser);
+    } else {
+      return this._angularFirestore
+        .doc<User>(`users/${uid}`)
+        .valueChanges()
+        .pipe(
+          tap((user) => {
+            if (user) {
+              this.cachedUser = user;
+            }
+          }),
+          map((user) => user ?? null)
+        );
+    }
+  }
+
+  // Devuelve un observable con el rol del usuario
+  get currentUserRole$(): Observable<UserRole | null> {
+    if (this.cachedUserRole) {
+      return of(this.cachedUserRole);
+    } else {
+      return this.getCurrentUserData$.pipe(
+        map((userData) => userData?.role || null)
+      );
+    }
   }
 
   // Devuelve los datos del usuario activo
-  getCurrentUserData(): Observable<User | null> {
+  get getCurrentUserData$(): Observable<User | null> {
     return this._aFireAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
@@ -58,7 +84,9 @@ export class UserService {
     await setDoc(userRef, userDoc);
   }
 
-  updateUser(uid: string, data: Partial<User>): Promise<void> {
-    return this._angularFirestore.doc<User>(`users/${uid}`).update(data);
+  // Limpiar el cache
+  clearCache(): void {
+    this.cachedUser = null;
+    this.cachedUserRole = null;
   }
 }

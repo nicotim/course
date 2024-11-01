@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-student',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './dashboard-student.component.html',
-  styleUrl: './dashboard-student.component.css'
+  styleUrl: './dashboard-student.component.css',
 })
-export class DashboardStudentComponent {
-
-}
+export class DashboardStudentComponent {}

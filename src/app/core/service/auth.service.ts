@@ -6,11 +6,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  user,
 } from '@angular/fire/auth';
 import { UserRoles, User, UserRole } from '../models/interface/user.interface';
 import { UserService } from './user.service';
-import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({ providedIn: 'root' })

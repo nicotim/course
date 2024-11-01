@@ -7,7 +7,9 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AuthStateService {
   private readonly _auth = inject(Auth);
 
-  authState$ = authState(this._auth);
+  // Se fija en el estado de mi auth
+  authState$: Observable<any> = authState(this._auth);
+  // Observable de la informacion de mi user
 
   get isLoggedIn$(): Observable<boolean> {
     return this.authState$.pipe(map((user) => !!user));
