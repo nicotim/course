@@ -1,0 +1,40 @@
+mat-toolbar {
+  background-color: var(--navbar-color);
+  height: 8%;
+}
+
+.logo {
+  font-family: var(--logo-font);
+  color: var(--white-color);
+  font-size: var(--logo-text-size);
+  font-weight: bold;
+  cursor: default;
+}
+
+.logout {
+  color: var(--white-color);
+  cursor: pointer;
+  padding: 1rem;
+  transition: 0.3s;
+}
+
+.logout:hover,
+.link:hover {
+  color: var(--main-color);
+  transition: 0.3s;
+  transform: scale(1.1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.link {
+  color: var(--white-color);
+  text-decoration: none;
+  font-style: var(--text-font);
+  font-size: var(--regular-text-size);
+  margin-right: 1.5rem;
+  margin-left: 1rem;
+  transition: 0.3s;
+}

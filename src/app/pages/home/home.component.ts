@@ -1,14 +1,13 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from 'src/app/core/service/auth.service';
 import { AuthStateService } from 'src/app/core/service/auth-state.service';
 import { UserService } from '@core/service/user.service';
 import { User } from '@core/models/interface/user.interface';
-import { lastValueFrom, Subscription, UnsubscriptionError } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 const MODULES = [
   MatToolbarModule,
@@ -27,7 +26,6 @@ const MODULES = [
 })
 export class HomeComponent implements OnInit {
   private readonly _authState = inject(AuthStateService);
-  private readonly _authService = inject(AuthService);
   private readonly _router = inject(Router);
   private readonly _userService = inject(UserService);
   private subscriptions: Subscription[] = [];
@@ -59,11 +57,6 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
-
-  async logOut() {
-    this._userService.clearCache();
-    return await this._authService.logOut();
   }
 
   navigateToFAQ() {

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { roleGuardAdmin } from '@core/guards/role.guard';
 
 export const admin_routes: Routes = [
   {
