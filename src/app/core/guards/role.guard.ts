@@ -10,7 +10,7 @@ export const roleGuardAdmin = (): CanActivateFn => {
     const router = inject(Router);
     const userService = inject(UserService);
 
-    return userService.currentUserRole$.pipe(
+    return userService.fetchCurrentUserRole$.pipe(
       take(1),
       map((role) => {
         if (role === UserRoles.ADMIN) {
@@ -35,7 +35,7 @@ export const roleGuardTeacher = (): CanActivateFn => {
     const router = inject(Router);
     const userService = inject(UserService);
 
-    return userService.currentUserRole$.pipe(
+    return userService.fetchCurrentUserRole$.pipe(
       take(1),
       map((role) => {
         if (role === UserRoles.TEACHER) {
@@ -59,7 +59,7 @@ export const roleGuardStudent = (): CanActivateFn => {
     const router = inject(Router);
     const userService = inject(UserService);
 
-    return userService.currentUserRole$.pipe(
+    return userService.fetchCurrentUserRole$.pipe(
       take(1),
       map((role) => {
         if (role === UserRoles.STUDENT) {

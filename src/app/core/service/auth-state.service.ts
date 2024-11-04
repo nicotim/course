@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState } from '@angular/fire/auth';
+import { Auth, authState, User } from '@angular/fire/auth';
 import { map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -8,10 +8,13 @@ export class AuthStateService {
   private readonly _auth = inject(Auth);
 
   // Se fija en el estado de mi auth
-  authState$: Observable<any> = authState(this._auth);
-  // Observable de la informacion de mi user
+  get authState$(): Observable<User> {
+    return authState(this._auth);
+  }
 
+  // Observable de la informacion de mi user
   get isLoggedIn$(): Observable<boolean> {
+    console.log('Logged In');
     return this.authState$.pipe(map((user) => !!user));
   }
 }

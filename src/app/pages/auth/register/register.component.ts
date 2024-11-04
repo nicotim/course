@@ -9,7 +9,7 @@ import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
-import { AuthButtonComponent } from '@shared/reusableComponents/auth-button/auth-button.component';
+import { AuthButtonComponent } from '@shared/Components/auth-button/auth-button.component';
 
 const MODULES = [
   RouterLink,

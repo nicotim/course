@@ -1,6 +1,6 @@
-@if(!(isLoggedIn | async) && !(isAuthSection$ | async)) {
+@if(!(isLoggedIn$ | async) && !(isAuthSection$ | async)) {
 <app-before-auth-navbar></app-before-auth-navbar>
-}@else if (isLoggedIn | async) {
+}@else if (isLoggedIn$ | async) {
 <app-after-auth-navbar></app-after-auth-navbar>
 }
 

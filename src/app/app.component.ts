@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { AuthStateService } from '@core/service/auth-state.service';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { filter, map, Observable } from 'rxjs';
-import { BeforeAuthNavbarComponent } from './shared/reusableComponents/nav/before-auth-navbar/before-auth-navbar.component';
-import { AfterAuthNavbarComponent } from './shared/reusableComponents/nav/after-auth-navbar/after-auth-navbar.component';
+import { BeforeAuthNavbarComponent } from './shared/Components/nav/before-auth-navbar/before-auth-navbar.component';
+import { AfterAuthNavbarComponent } from './shared/Components/nav/after-auth-navbar/after-auth-navbar.component';
 
 const MODULES = [
   CommonModule,
@@ -22,15 +22,12 @@ const MODULES = [
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent {
   private readonly _authState = inject(AuthStateService);
   private readonly _router = inject(Router);
 
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {}
-
-  isLoggedIn: Observable<Boolean> = this._authState.isLoggedIn$;
+  isLoggedIn$ = this._authState.isLoggedIn$;
+  isLoading = true;
 
   isAuthSection$: Observable<Boolean> = this._router.events.pipe(
     filter((event) => event instanceof NavigationEnd),

@@ -1,17 +1,11 @@
 <div class="main-content">
   <section class="main-info">
     <h1>Quality Education</h1>
-    @if (showCustomTitle) {
-    <h3>
-      Thank you for joining us in this amazing community
-      {{ user?.displayName | titlecase }}
-    </h3>
-    }@else{
+
     <h3>
       Join our community to connect with instructors, enroll in diverse courses,
       and unlock your potential through personalized learning experiences.
     </h3>
-    }
     <button (click)="navigateToFAQ()">More info</button>
   </section>
   <section class="banner">

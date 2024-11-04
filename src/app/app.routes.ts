@@ -17,6 +17,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'profile',
+    canActivateChild: [privateGuard()],
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then(
+        (c) => c.ProfileComponent
+      ),
+  },
+  {
     path: 'faq',
     loadComponent: () =>
       import('./pages/faq/faq.component').then((c) => c.FaqComponent),
