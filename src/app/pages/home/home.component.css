@@ -13,8 +13,6 @@
 }
 
 .banner-image-1 {
-  width: 17.75rem;
-  height: 12.5rem;
   position: absolute;
   left: 5.2%;
   right: 53.19%;
@@ -24,8 +22,6 @@
 }
 
 .banner-image-2 {
-  width: 17.75rem;
-  height: 14.375rem;
   position: absolute;
   left: 54%;
   top: 0%;
@@ -34,8 +30,6 @@
 }
 
 .banner-image-3 {
-  width: 17.75rem;
-  height: 12.125rem;
   position: absolute;
   top: 53.49%;
   bottom: 0%;
@@ -43,8 +37,6 @@
 }
 
 .banner-image-4 {
-  width: 19.125rem;
-  height: 10.625rem;
   position: absolute;
   left: 49.45%;
   top: 55%;

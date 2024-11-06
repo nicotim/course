@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<div *ngIf="user">
+  <h2>User Profile</h2>
+  <p>Name: {{ user.displayName }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Role: {{ user.role }}</p>
+  <p>Account created: {{ user.createdAt | timestampToDate | date }}</p>
+  <p>Last Login: {{ user.lastLogin | timestampToDate | date }}</p>
+</div>
+<p *ngIf="!user">Loading...</p>

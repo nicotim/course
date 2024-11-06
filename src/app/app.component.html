@@ -1,8 +1,9 @@
 @if(!(isLoggedIn$ | async) && !(isAuthSection$ | async)) {
 <app-before-auth-navbar></app-before-auth-navbar>
-}@else if (isLoggedIn$ | async) {
+} @else if (isLoggedIn$ | async){
 <app-after-auth-navbar></app-after-auth-navbar>
 }
 
 <router-outlet></router-outlet>
+<app-loading></app-loading>
 <ngx-sonner-toaster richColors position="bottom-right"></ngx-sonner-toaster>

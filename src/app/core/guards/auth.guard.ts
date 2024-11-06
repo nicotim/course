@@ -1,7 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthStateService } from '../service/auth-state.service';
 import { inject } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { AuthStateService } from '@core/service';
 
 export const privateGuard = (): CanActivateFn => {
   return () => {

@@ -5,11 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { FormSignIn } from '@core/models/interface/auth.interface';
+import { AuthService } from '@core/service';
 import { AuthButtonComponent } from '@shared/Components/auth-button/auth-button.component';
 import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
 import { toast } from 'ngx-sonner';
-import { FormSignIn } from 'src/app/core/models/interface/auth.interface';
-import { AuthService } from 'src/app/core/service/auth.service';
 
 const MODULES = [
   RouterLink,

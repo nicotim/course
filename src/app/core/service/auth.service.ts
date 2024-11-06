@@ -17,7 +17,6 @@ export class AuthService {
   private readonly _auth = inject(Auth);
   private readonly _userService = inject(UserService);
   private readonly _angularFirestore = inject(AngularFirestore);
-  private readonly _authState = inject(AuthStateService);
 
   // Registro de usuarios con email y contraseña
   async signUp(

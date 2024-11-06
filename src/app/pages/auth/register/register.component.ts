@@ -4,12 +4,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormSignUp } from '../../../core/models/interface/auth.interface';
+import { FormSignUp } from '@core/models/interface/auth.interface';
 import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
-import { AuthService } from 'src/app/core/service/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
 import { AuthButtonComponent } from '@shared/Components/auth-button/auth-button.component';
+import { AuthService } from '@core/service';
 
 const MODULES = [
   RouterLink,

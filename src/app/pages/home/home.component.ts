@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 const MODULES = [
   MatToolbarModule,
@@ -11,6 +11,7 @@ const MODULES = [
   MatListModule,
   RouterModule,
   CommonModule,
+  NgOptimizedImage,
 ];
 
 @Component({
@@ -20,10 +21,8 @@ const MODULES = [
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   private readonly _router = inject(Router);
-
-  ngOnInit(): void {}
 
   navigateToFAQ() {
     return this._router.navigateByUrl('faq');

@@ -18,6 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
+    canActivate: [privateGuard()],
     canActivateChild: [privateGuard()],
     loadComponent: () =>
       import('./pages/profile/profile.component').then(

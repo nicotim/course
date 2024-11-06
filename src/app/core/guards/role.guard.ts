@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { UserRoles } from '@core/models/interface/user.interface';
-import { UserService } from '@core/service/user.service';
+import { UserService } from '@core/service';
 import { toast } from 'ngx-sonner';
 import { catchError, map, of, take } from 'rxjs';
 

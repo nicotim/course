@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerService } from '@core/service';
 
 const MODULES = [MatProgressSpinnerModule];
 
@@ -7,7 +8,17 @@ const MODULES = [MatProgressSpinnerModule];
   selector: 'app-loading',
   standalone: true,
   imports: [MODULES],
-  templateUrl: './loading.component.html',
+  template: `
+    @if (isLoading()) {
+    <div class="loading-container">
+      <mat-spinner mode="indeterminate"></mat-spinner>
+    </div>
+    }
+  `,
   styleUrl: './loading.component.css',
 })
-export class LoadingComponent {}
+export class LoadingComponent {
+  private readonly _spinnerService = inject(SpinnerService);
+
+  isLoading = this._spinnerService.isLoading;
+}
