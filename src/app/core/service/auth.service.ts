@@ -10,7 +10,6 @@ import {
 import { UserRoles, User, UserRole } from '../models/interface/user.interface';
 import { UserService } from './user.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthStateService } from './auth-state.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -18,8 +17,7 @@ export class AuthService {
   private readonly _userService = inject(UserService);
   private readonly _angularFirestore = inject(AngularFirestore);
 
-  // Registro de usuarios con email y contraseña
-  async signUp(
+  async createAccount(
     email: string,
     password: string,
     displayName: string,
@@ -44,7 +42,7 @@ export class AuthService {
   }
 
   // Login de usuarios con email y contraseña
-  async signIn(email: string, password: string): Promise<void> {
+  async logIn(email: string, password: string): Promise<void> {
     try {
       const credential = await signInWithEmailAndPassword(
         this._auth,

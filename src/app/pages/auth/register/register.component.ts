@@ -60,7 +60,7 @@ export class RegisterComponent {
       const { email, password, displayName } = this.form.value;
       if (!email || !password || !displayName) return;
 
-      await this._authService.signUp(email, password, displayName);
+      await this._authService.createAccount(email, password, displayName);
 
       toast.success('Successfully signed up');
       this._router.navigateByUrl('/home');

@@ -13,12 +13,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
-import { spinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideAnimations(),
-    provideHttpClient(withFetch(), withInterceptors([spinnerInterceptor])),
     importProvidersFrom(
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,

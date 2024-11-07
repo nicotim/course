@@ -57,7 +57,7 @@ export class LoginComponent {
     try {
       const { email, password } = this.form.value;
       if (!email || !password) return;
-      await this._authService.signIn(email, password);
+      await this._authService.logIn(email, password);
       toast.success('Successfully signed in');
       this._router.navigateByUrl('/home');
     } catch (error) {

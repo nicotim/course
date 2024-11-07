@@ -1,14 +1,14 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { AuthStateService } from '@core/service';
+import { UserService } from '@core/service';
 
 export const privateGuard = (): CanActivateFn => {
   return () => {
     const router = inject(Router);
-    const authState = inject(AuthStateService);
+    const user = inject(UserService);
 
-    return authState.authState$.pipe(
+    return user.authState$.pipe(
       map((state) => {
         if (!state) {
           router.navigateByUrl('/auth/login');
@@ -23,9 +23,9 @@ export const privateGuard = (): CanActivateFn => {
 export const publicGuard = (): CanActivateFn => {
   return () => {
     const router = inject(Router);
-    const authState = inject(AuthStateService);
+    const user = inject(UserService);
 
-    return authState.authState$.pipe(
+    return user.authState$.pipe(
       map((state) => {
         if (state) {
           router.navigateByUrl('/home');
