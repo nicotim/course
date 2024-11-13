@@ -1,9 +1,99 @@
-<div *ngIf="user">
-  <h2>User Profile</h2>
-  <p>Name: {{ user.displayName }}</p>
-  <p>Email: {{ user.email }}</p>
-  <p>Role: {{ user.role }}</p>
-  <p>Account created: {{ user.createdAt | timestampToDate | date }}</p>
-  <p>Last Login: {{ user.lastLogin | timestampToDate | date }}</p>
+<div *ngIf="_loading.loading$ | async; else profile">
+  <app-loading />
 </div>
-<p *ngIf="!user">Loading...</p>
+<ng-template #profile>
+  <mat-card appearance="outlined">
+    <div class="card">
+      <mat-card-header>Account Information</mat-card-header>
+      <mat-card-content
+        ><div *ngIf="user" class="user-info">
+          <span class="display">
+            <span class="external-container">
+              <span class="internal-container">
+                <span class="key">Username</span>
+              </span>
+            </span>
+            <span class="value-container">
+              <span class="value">{{ user.displayName }}</span>
+            </span>
+          </span>
+          <span class="display">
+            <span class="external-container">
+              <span class="internal-container">
+                <span class="key">Email adress</span>
+              </span>
+            </span>
+            <span class="value-container">
+              <span class="value">{{ user.email }}</span>
+            </span>
+          </span>
+          <span class="display">
+            <span class="external-container">
+              <span class="internal-container">
+                <span class="key">Role</span>
+              </span>
+            </span>
+            <span class="value-container">
+              <span class="value">{{ user.role }}</span>
+            </span>
+          </span>
+          <span class="display">
+            <span class="external-container">
+              <span class="internal-container">
+                <span class="key">Account creation date</span>
+              </span>
+            </span>
+            <span class="value-container"
+              ><span class="value">
+                {{ user.createdAt | timestampToDate | date }}</span
+              ></span
+            >
+          </span>
+          <span class="display">
+            <span class="external-container">
+              <span class="internal-container">
+                <span class="key">Last login</span>
+              </span>
+            </span>
+            <span class="value-container"
+              ><span class="value">
+                {{ user.lastLogin | timestampToDate | date }}</span
+              ></span
+            >
+          </span>
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <div *ngIf="isUser(this.user?.role)" class="btn">
+          <button>
+            <span class="external-btn-container">
+              <span class="internal-btn-container">
+                <span class="btn-title">Change role</span>
+                <div class="subtitle-container">
+                  <span class="btn-subtitle"
+                    >You need to be a student/teacher to access more features,
+                    ask for your role here!</span
+                  >
+                </div>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="btn">
+          <button>
+            <span class="external-btn-container">
+              <span class="internal-btn-container">
+                <span class="btn-title">Edit information</span>
+                <div class="subtitle-container">
+                  <span class="btn-subtitle"
+                    >Change some information about your profile</span
+                  >
+                </div>
+              </span>
+            </span>
+          </button>
+        </div>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</ng-template>

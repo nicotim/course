@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { AfterAuthNavbarComponent } from '@shared/Components/nav/after-auth-navbar/after-auth-navbar.component';
-import { BeforeAuthNavbarComponent } from '@shared/Components/nav/before-auth-navbar/before-auth-navbar.component';
+import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { NgxSonnerToaster } from 'ngx-sonner';
-import { filter, map, Observable } from 'rxjs';
-import { UserService } from '@core/service';
+import { filter, map, Observable, take } from 'rxjs';
+import { PreAuthNavComponent } from './shared/components/pre-auth-nav/pre-auth-nav.component';
+import { LoadingService, UserService } from '@core/service';
+import { LoadingComponent } from '@shared/components/loading/loading.component';
 
 const MODULES = [
-  CommonModule,
   RouterOutlet,
   NgxSonnerToaster,
-  BeforeAuthNavbarComponent,
-  AfterAuthNavbarComponent,
+  NavbarComponent,
+  CommonModule,
+  LoadingComponent,
+  PreAuthNavComponent,
 ];
 
 @Component({
@@ -22,18 +24,25 @@ const MODULES = [
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private readonly _router = inject(Router);
   private readonly _userService = inject(UserService);
+  _loading = inject(LoadingService);
 
-  isLoggedIn$ = this._userService.isLoggedIn$;
+  isLoggedIn$ = this._userService.loginStatus$;
   user$ = this._userService.user$;
 
-  constructor() {
-    this.isLoggedIn$.subscribe((data) => console.log('Is logged in', data));
-    this.user$.subscribe((data) =>
-      console.log('Is user observable data', data)
-    );
+  ngOnInit(): void {
+    this._loading.show();
+    this._userService.user$.pipe(take(1)).subscribe({
+      next: () => {
+        console.log(this.user$);
+        this._loading.hide();
+      },
+      error: () => {
+        this._loading.hide();
+      },
+    });
   }
 
   isAuthSection$: Observable<Boolean> = this._router.events.pipe(

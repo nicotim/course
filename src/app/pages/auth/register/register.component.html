@@ -16,7 +16,9 @@
             />
           </mat-form-field>
           @if (isRequired('displayName')) {
-          <small class="warning-text">This field is required</small>
+          <div class="warning-text">
+            <span class="block">This field is required</span>
+          </div>
           }
           <mat-form-field>
             <input
@@ -26,6 +28,9 @@
               placeholder="mail@email.com"
             />
           </mat-form-field>
+          <div class="warning-text" *ngIf="passwordFormField?.dirty">
+            <span>This field is required</span>
+          </div>
           @if (isRequired('email')) {
           <small class="warning-text">This field is required</small>
           } @else if (hasEmailError()) {
@@ -39,9 +44,44 @@
               placeholder="********"
             />
           </mat-form-field>
-          @if (isRequired("password")) {
-          <small class="warning-text">This field is required</small>
-          }
+          <div class="warning-text" *ngIf="passwordFormField?.dirty">
+            <span
+              class="block"
+              [ngClass]="{
+                'text-primary': passwordFormField?.value?.match('^(?=.*[A-Z])')
+              }"
+              >At least one uppercase letter.</span
+            >
+            <span
+              class="block"
+              [ngClass]="{
+                'text-primary': passwordFormField?.value?.match('(?=.*[a-z])')
+              }"
+              >At least one lowercase letter.</span
+            >
+            <span
+              class="block"
+              [ngClass]="{
+                'text-primary': passwordFormField?.value?.match('(.*[0-9].*)')
+              }"
+              >At least one digit.</span
+            >
+            <span
+              class="block"
+              [ngClass]="{
+                'text-primary':
+                  passwordFormField?.value?.match('(?=.*[!@#$%^&*])')
+              }"
+              >At least one special character.</span
+            >
+            <span
+              class="block"
+              [ngClass]="{
+                'text-primary': passwordFormField?.value?.match('.{8,}')
+              }"
+              >At least 8 characters long.</span
+            >
+          </div>
           <button mat-flat-button>Sign Up</button>
         </div>
         <div class="footer">

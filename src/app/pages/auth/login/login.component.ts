@@ -6,9 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { FormSignIn } from '@core/models/interface/auth.interface';
-import { AuthService } from '@core/service';
-import { AuthButtonComponent } from '@shared/Components/auth-button/auth-button.component';
-import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
+import { AuthService, LoadingService } from '@core/service';
+import { AuthButtonComponent } from '@shared/components/auth-button/auth-button.component';
+import {
+  EmailRegx,
+  hasEmailError,
+  isRequired,
+  StrongPasswordRegx,
+} from '@shared/utils/auth.validators';
 import { toast } from 'ngx-sonner';
 
 const MODULES = [
@@ -44,11 +49,11 @@ export class LoginComponent {
   form = this._formBuilder.group<FormSignIn>({
     email: this._formBuilder.control('', [
       Validators.required,
-      Validators.email,
+      Validators.pattern(EmailRegx),
     ]),
     password: this._formBuilder.control('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.pattern(StrongPasswordRegx),
     ]),
   });
 

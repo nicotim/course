@@ -5,10 +5,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormSignUp } from '@core/models/interface/auth.interface';
-import { hasEmailError, isRequired } from '@shared/utils/auth.validators';
+import {
+  EmailRegx,
+  hasEmailError,
+  isRequired,
+  StrongPasswordRegx,
+} from '@shared/utils/auth.validators';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
-import { AuthButtonComponent } from '@shared/Components/auth-button/auth-button.component';
+import { AuthButtonComponent } from '@shared/components/auth-button/auth-button.component';
 import { AuthService } from '@core/service';
 
 const MODULES = [
@@ -45,26 +50,31 @@ export class RegisterComponent {
     displayName: this._formBuilder.control('', Validators.required),
     email: this._formBuilder.control('', [
       Validators.required,
-      Validators.email,
+      Validators.pattern(EmailRegx),
     ]),
     password: this._formBuilder.control('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.pattern(StrongPasswordRegx),
     ]),
   });
 
+  get emailFormField() {
+    return this.form.get('email');
+  }
+
+  get passwordFormField() {
+    return this.form.get('password');
+  }
+
   async submit(): Promise<void> {
     if (this.form.invalid) return;
-
     try {
       const { email, password, displayName } = this.form.value;
       if (!email || !password || !displayName) return;
-
       await this._authService.createAccount(email, password, displayName);
-
       toast.success('Successfully signed up');
       this._router.navigateByUrl('/home');
-    } catch (error: unknown) {
+    } catch (error) {
       toast.error('There was an error signing up');
     }
   }

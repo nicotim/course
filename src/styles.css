@@ -5,14 +5,14 @@
 }
 
 :root {
-  --main-color: #88c1ff;
+  --main-color: #8ac2ff;
   --white-color: #ebdcdc;
   --secondary-color: #e89e77;
   --dark-color: #141415;
   --navbar-color: #20252c;
   --logo-font: Roboto;
-  --title-font: "Montserrat", sans-serif;
-  --text-font: "Open Sans";
+  --title-font: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --text-font: Arial, Helvetica, sans-serif;
   --regular-text-size: 1.25rem;
   --logo-text-size: 1.75rem;
   --title-text-size: 4.25rem;

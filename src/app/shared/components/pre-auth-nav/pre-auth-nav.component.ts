@@ -6,10 +6,10 @@ import { RouterModule } from '@angular/router';
 const MODULES = [MatToolbarModule, RouterModule, CommonModule];
 
 @Component({
-  selector: 'app-before-auth-navbar',
+  selector: 'app-pre-auth-nav',
   standalone: true,
   imports: [MODULES],
-  templateUrl: './before-auth-navbar.component.html',
-  styleUrl: './before-auth-navbar.component.css',
+  templateUrl: './pre-auth-nav.component.html',
+  styleUrl: './pre-auth-nav.component.css',
 })
-export class BeforeAuthNavbarComponent {}
+export class PreAuthNavComponent {}
