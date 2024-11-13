@@ -70,22 +70,16 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     try {
       const credential = await signInWithPopup(this._auth, provider);
-      const userId = credential.user.uid;
-      if (!credential.user.uid) {
+      const user = credential.user;
+      if (user) {
         await this._userService.createUserDocument(
-          userId,
+          user.uid,
           credential.user.email!,
           credential.user.displayName || 'New user',
           UserRoles.USER
         );
       } else {
-        const userDocRef = this._angularFirestore
-          .collection<User>('users')
-          .doc(userId);
-
-        await userDocRef.update({
-          lastLogin: new Date(),
-        });
+        console.error('Error during Google sign in');
       }
     } catch (error) {
       console.error('Error during Google sign in:', error);

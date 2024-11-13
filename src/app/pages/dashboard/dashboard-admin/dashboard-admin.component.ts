@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { InfoCardComponent } from '../../../shared/Components/info-card/info-card.component';
 import { RouterOutlet } from '@angular/router';
 
-const MODULES = [InfoCardComponent, RouterOutlet];
+const MODULES = [RouterOutlet];
 
 @Component({
   selector: 'app-dashboard-admin',

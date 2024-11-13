@@ -3,8 +3,13 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  doc,
+  Firestore,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from '@angular/fire/firestore';
 import {
   map,
   Observable,
@@ -32,7 +37,7 @@ export class UserService implements OnDestroy {
     this.user$ = authState(this._auth).pipe(
       switchMap((authUser: User | null) => {
         if (authUser) {
-          return this.getUserFromFirestore(authUser.uid);
+          return this.getUser(authUser.uid);
         } else {
           return of(null);
         }
@@ -45,7 +50,7 @@ export class UserService implements OnDestroy {
     );
   }
 
-  private getUserFromFirestore(uid: string): Observable<User | null> {
+  private getUser(uid: string): Observable<User | null> {
     const userRef: AngularFirestoreDocument<User> = this._angularFirestore.doc(
       `users/${uid}`
     );
@@ -55,13 +60,11 @@ export class UserService implements OnDestroy {
     );
   }
 
-  // Me devuelve null si no estoy logueado y si estoy logueado me da la info desde el lado del Auth
   get authState$(): Observable<User | null> {
     return authState(this._auth);
   }
 
-  // Me devuelve un boolean dependiendo de si estoy logueado o no
-  get isLoggedIn$(): Observable<boolean> {
+  get loginStatus$(): Observable<boolean> {
     return this.authState$.pipe(map((user) => !!user));
   }
 
@@ -79,6 +82,8 @@ export class UserService implements OnDestroy {
     displayName: string,
     role: UserRole
   ): Promise<void> {
+    const userRef = doc(this._firestore, `users/${uid}`);
+
     const userDoc: User = {
       uid,
       displayName,
@@ -88,8 +93,20 @@ export class UserService implements OnDestroy {
       lastLogin: new Date(),
     };
 
-    const userRef = doc(this._firestore, `users/${uid}`);
-    await setDoc(userRef, userDoc);
+    try {
+      const userDocSnapshot = await getDoc(userRef);
+      if (!userDocSnapshot.exists()) {
+        await setDoc(userRef, userDoc);
+        console.log('New user document created');
+      } else {
+        await updateDoc(userRef, {
+          lastLogin: new Date(),
+        });
+        console.log('User document updated');
+      }
+    } catch (error) {
+      console.error('Error creating/updating user document:', error);
+    }
   }
 
   clearCache(): void {

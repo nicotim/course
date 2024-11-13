@@ -1,0 +1,141 @@
+mat-card {
+  display: flex;
+  max-width: 35rem;
+  margin: 1.5rem 3rem;
+  border-style: none;
+  letter-spacing: 2px;
+}
+
+.card {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  background-color: var(--dark-color);
+  border: none;
+  height: max-content;
+}
+
+.section {
+  flex: 1 1 0;
+  display: block;
+  box-sizing: inherit;
+}
+
+.display {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.8rem 0;
+}
+
+.external-container {
+  align-items: baseline;
+  display: flex;
+}
+
+.internal-container {
+  flex: 1 1 0px;
+  margin: auto 0px;
+  display: block;
+}
+
+.key {
+  line-height: 1.5rem;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: var(--text-font);
+  color: var(--white-color);
+  text-align: left;
+}
+
+.value-container {
+  margin-left: 1rem;
+  display: inline-block;
+}
+
+.value {
+  text-align: right;
+  max-width: 10rem;
+  color: var(--white-color);
+}
+
+mat-card-header {
+  margin: 1.2rem 0;
+  font-size: var(--logo-text-size);
+  font-weight: bold;
+  font-family: var(--title-font);
+  color: var(--main-color);
+}
+
+.user-info,
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.category {
+  font-size: 1.2rem;
+  font-family: var(--title-font);
+  font-weight: 600;
+  color: var(--main-color);
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-card-actions {
+  display: block;
+  padding: 0 1rem;
+}
+
+button {
+  justify-content: space-between;
+  text-align: left;
+  margin-top: 1.5rem;
+  color: var(--secondary-color);
+  width: 100%;
+  cursor: pointer;
+  padding: 0px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+}
+
+.external-btn-container {
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+}
+
+.internal-btn-container {
+  flex: 1 1 0px;
+  display: block;
+  box-sizing: inherit;
+}
+
+.btn-title {
+  color: var(--button-color);
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.subtitle-container {
+  white-space: pre-line;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.btn-subtitle {
+  font-family: var(--text-font);
+  color: var(--white-color);
+  line-height: 1rem;
+  font-weight: 400;
+}

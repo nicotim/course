@@ -1,0 +1,67 @@
+<ng-container [ngSwitch]="currentUserRole$ | async">
+  <ng-container *ngSwitchCase="'admin'">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="logo">CourseIT</span>
+        <span class="spacer"></span>
+        <a class="link" routerLink="/home">Home</a>
+        <a class="link" routerLink="/dashboard/admin/courses">Courses</a>
+        <a class="link" routerLink="/dashboard/admin/analytics">Analytics</a>
+        <a class="link" routerLink="/dashboard/admin/users">Users</a>
+        <a class="link" routerLink="/profile">Profile</a>
+        <span class="material-symbols-outlined logout" (click)="logOut()">
+          logout
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'teacher'">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="logo">CourseIT</span>
+        <span class="spacer"></span>
+        <a class="link" routerLink="/home">Home</a>
+        <a class="link" routerLink="/dashboard/teacher/analytics">Analytics</a>
+        <a class="link" routerLink="/dashboard/teacher/courses">Courses</a>
+        <a class="link" routerLink="/dashboard/teacher/students">Students</a>
+        <a class="link" routerLink="/profile">Profile</a>
+        <span class="material-symbols-outlined logout" (click)="logOut()">
+          logout
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'student'">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="logo">CourseIT</span>
+        <span class="spacer"></span>
+        <a class="link" routerLink="/home">Home</a>
+        <a class="link" routerLink="/dashboard/student/catalog"
+          >Course Catalog</a
+        >
+        <a class="link" routerLink="/dashboard/student/interface">Interface</a>
+        <a class="link" routerLink="/profile">Profile</a>
+        <span class="material-symbols-outlined logout" (click)="logOut()">
+          logout
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'user'">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="logo">CourseIT</span>
+        <span class="spacer"></span>
+        <a class="link" routerLink="/home">Home</a>
+        <a class="link" routerLink="/profile">Profile</a>
+        <span class="material-symbols-outlined logout" (click)="logOut()">
+          logout
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </ng-container>
+</ng-container>

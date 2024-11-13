@@ -1,1 +1,6 @@
-<p>user-management works!</p>
+<div class="notifications-icon">
+  Requests
+  <span *ngIf="roleChangeRequests.length > 0">{{
+    roleChangeRequests.length
+  }}</span>
+</div>
